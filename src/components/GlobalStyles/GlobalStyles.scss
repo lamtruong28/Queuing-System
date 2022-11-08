@@ -1,0 +1,19 @@
+@import "normalize.css";
+
+:root {
+    --font-family: "ProximaNova", sans-serif;
+
+    --primary: #fe2c55;
+    --white-color: #fff;
+    --text-color: #161823;
+    //Default layout:
+    --default-header-height: 60px;
+    --default-width: 1150px;
+    --default-layout-horizontal-padding: 24px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
