@@ -1,0 +1,70 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    height: 100vh;
+}
+
+.content-left {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: #f7f7f7;
+
+    &__wrap {
+        width: 400px;
+        margin: 82px auto 0;
+    }
+    .input {
+        border: 1.5px solid #d4d4d7;
+        border-radius: 8px;
+        padding: 6.5px 12px;
+        font-size: 1.8rem;
+        font-weight: 400;
+    }
+}
+
+.logo {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 102px;
+}
+
+.title {
+    font-size: 2.2rem;
+    font-weight: 700;
+}
+
+.content {
+    margin: 16px 0 4px;
+    font-size: 1.8rem;
+    font-weight: 400;
+}
+
+.wrap-button {
+    gap: 24px;
+    margin-top: 48px;
+}
+
+body .btn-cancel {
+    width: 162px;
+    border-color: var(--orange-400);
+    border-radius: 8px;
+}
+
+body .btn-continue {
+    background-color: var(--orange-400);
+    color: var(--white-color);
+    font-weight: 700;
+    width: 162px;
+    border-radius: 8px;
+}
+
+// CSS content right
+
+.content-right {
+    position: relative;
+    width: 848px;
+    left: 43px;
+}

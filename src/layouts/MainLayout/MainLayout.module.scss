@@ -1,0 +1,29 @@
+.wrapper {
+    display: flex;
+    height: 100vh;
+}
+
+.left {
+    width: 200px;
+}
+
+.content {
+    background-color: #f7f7f7;
+    padding-top: var(--topbar-height);
+}
+
+.content,
+.right {
+    flex: 1;
+}
+
+.center {
+    display: flex;
+    position: relative;
+    top: calc(var(--topbar-height) * -1);
+}
+
+.over-view {
+    width: 400px;
+    padding-top: var(--topbar-height);
+}

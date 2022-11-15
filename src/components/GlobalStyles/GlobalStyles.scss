@@ -1,19 +1,155 @@
-@import "normalize.css";
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;900&display=swap");
+// @import "normalize.css";
 
 :root {
-    --font-family: "ProximaNova", sans-serif;
+    --font-family: "Nunito", sans-serif;
 
-    --primary: #fe2c55;
-    --white-color: #fff;
+    --primary: #ff7506;
+    --orange-400: #ff9138;
+    --white-color: #ffffff;
+    --placeholder-color: #a9a9b0;
+    --gray-50: #eaeaec;
+    --gray-300: #7e7d88;
+    --gray-400: #535261;
+    --gray-500: #282739;
+    --gray-blue: #535261;
+    --red-color: #e73f3f;
     --text-color: #161823;
     //Default layout:
-    --default-header-height: 60px;
-    --default-width: 1150px;
-    --default-layout-horizontal-padding: 24px;
+    --layout--width: 1440px;
+    --topbar-height: 88px;
 }
 
-* {
+body * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-family: var(--font-family);
+    font-size: 1.6rem;
+    line-height: 1.5;
+    text-rendering: optimizeSpeed;
+    color: var(--text-color);
+    max-width: var(--layout--width);
+    margin: 0 auto;
+}
+
+a:hover,
+a {
+    color: inherit;
+}
+
+// Override CSS antd
+
+body
+    .ant-input-affix-wrapper-status-error:not(.ant-input-affix-wrapper-disabled):not(.ant-input-affix-wrapper-borderless).ant-input-affix-wrapper,
+body
+    .ant-input-affix-wrapper-status-error:not(.ant-input-affix-wrapper-disabled):not(.ant-input-affix-wrapper-borderless).ant-input-affix-wrapper:hover {
+    border-color: var(--red-color);
+}
+
+body
+    .ant-input-affix-wrapper-status-error:not(.ant-input-affix-wrapper-disabled):not(.ant-input-affix-wrapper-borderless).ant-input-affix-wrapper:focus,
+body
+    .ant-input-affix-wrapper-status-error:not(.ant-input-affix-wrapper-disabled):not(.ant-input-affix-wrapper-borderless).ant-input-affix-wrapper-focused {
+    box-shadow: 0 0 0 2px rgb(231 63 63 / 20%);
+}
+
+body .ant-input-affix-wrapper:not(.ant-input-affix-wrapper-disabled):hover {
+    border-width: 1.5px;
+}
+
+.ant-btn:hover,
+.ant-btn:focus {
+    color: inherit;
+    border-color: inherit;
+    background: inherit;
+}
+
+// Menubar CSS
+.ant-menu-item-icon,
+.ant-menu-submenu-expand-icon {
+    color: var(--placeholder-color);
+}
+
+.ant-menu-vertical .ant-menu-item:hover .ant-menu-item-icon,
+.ant-menu-vertical .ant-menu-item:hover,
+.ant-menu-vertical .ant-menu-item-active,
+.ant-menu-vertical .ant-menu:not(.ant-menu-inline) .ant-menu-submenu-open,
+.ant-menu-vertical .ant-menu-submenu-title:hover .ant-menu-submenu-expand-icon,
+.ant-menu-vertical .ant-menu-submenu-selected .ant-menu-title-content,
+.ant-menu-vertical .ant-menu-submenu-selected .ant-menu-item-icon,
+.ant-menu-vertical-left .ant-menu-submenu-selected,
+.ant-menu-vertical-right .ant-menu-submenu-selected,
+.ant-menu-submenu-active,
+.ant-menu-submenu-active .ant-menu-item-icon,
+.ant-menu-submenu-active .ant-menu-title-content,
+.ant-menu-submenu-active .ant-menu-submenu-expand-icon,
+.ant-menu-submenu-active .ant-menu-title-content,
+.ant-menu-submenu-title:hover .ant-menu-item-icon,
+.ant-menu-submenu-title:hover .ant-menu-title-content {
+    color: var(--primary);
+}
+
+.ant-menu-title-content {
+    position: relative;
+    font-size: 1.6rem;
+    font-weight: 600;
+    line-height: 24px;
+}
+
+.ant-menu-item .ant-menu-item-icon + span {
+    margin-left: 8px;
+}
+.ant-menu-vertical .ant-menu-submenu .ant-menu-submenu-title,
+.ant-menu-vertical .ant-menu-item {
+    display: flex;
+    align-items: center;
+    height: 48px;
+    padding-left: 16px !important;
+    margin: 0 !important;
+    color: var(--gray-300);
+}
+
+.ant-menu-submenu.ant-menu-submenu-selected,
+.ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
+    background-color: var(--primary);
+    color: var(--white-color);
+}
+.ant-menu-submenu-selected .ant-menu-submenu-expand-icon,
+.ant-menu-submenu.ant-menu-submenu-selected .ant-menu-item-icon,
+.ant-menu-submenu.ant-menu-submenu-selected .ant-menu-title-content,
+.ant-menu-submenu.ant-menu-submenu-selected.ant-menu-submenu-active
+    .ant-menu-submenu-expand-icon {
+    color: var(--white-color);
+}
+
+.ant-menu:not(.ant-menu-horizontal)
+    .ant-menu-item-selected
+    .ant-menu-item-icon {
+    color: var(--white-color);
+}
+
+// Override color disable input antd
+.ant-input[disabled] {
+    background-color: var(--gray-50);
+    border-color: var(--gray-50);
+}
+
+// CSS
+
+.d-flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.d-flex-column {
+    flex-direction: column;
 }
