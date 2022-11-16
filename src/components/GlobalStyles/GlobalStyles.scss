@@ -5,6 +5,7 @@
     --font-family: "Nunito", sans-serif;
 
     --primary: #ff7506;
+    --orange-50: #fff2e7;
     --orange-400: #ff9138;
     --white-color: #ffffff;
     --placeholder-color: #a9a9b0;
@@ -38,6 +39,23 @@ body {
     color: var(--text-color);
     max-width: var(--layout--width);
     margin: 0 auto;
+}
+
+// custom scrollbar:
+html *::-webkit-scrollbar {
+    border-radius: 0;
+    width: 8px;
+    height: 8px;
+}
+
+html *::-webkit-scrollbar-thumb {
+    border-radius: 43px;
+    background-color: #ffc89b;
+}
+
+html *::-webkit-scrollbar-track {
+    border-radius: 0;
+    background-color: rgba(0, 0, 0, 0);
 }
 
 a:hover,

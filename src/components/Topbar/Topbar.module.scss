@@ -17,25 +17,24 @@
     display: flex;
     justify-content: end;
     align-items: center;
-    margin-right: 40px;
+    margin-right: 64px;
 }
 
-body {
+.wrapper {
     .btn-notify {
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 32px;
-        height: 32px;
-        padding: 0;
         color: #ffac6a;
         background-color: #fff2e7;
-        border-radius: 50%;
         border: none;
 
-        &.clicked,
-        &:hover,
         &:focus {
+            color: #ffac6a;
+            background-color: #fff2e7;
+        }
+        &.clicked,
+        &:hover {
             color: var(--white-color);
             background-color: var(--primary);
         }

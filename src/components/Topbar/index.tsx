@@ -7,10 +7,14 @@ import images from "@/assets/images";
 import Path from "../Path";
 import { useAppDispatch } from "@/redux/store";
 import pathSlice from "@/redux/slices/pathSlice";
+import Tippy from "@tippyjs/react/headless";
+import Notification from "../Notification";
+import { useState } from "react";
 
 const cx = classNames.bind(styles);
 
 function Topbar() {
+    const [clicked, setClicked] = useState(false);
     const dispatch = useAppDispatch();
     const handleClick = () => {
         dispatch(
@@ -26,9 +30,29 @@ function Topbar() {
                 <Path />
             </div>
             <div className={cx("user-wrap")}>
-                <Button className={cx("btn-notify")}>
-                    <NotificationIcon />
-                </Button>
+                {/* Wrap tag div in order to fix tippy warning  */}
+                <div>
+                    <Tippy
+                        render={(attrs) => (
+                            <div className="box" tabIndex={-1} {...attrs}>
+                                <Notification />
+                            </div>
+                        )}
+                        delay={[100, 200]}
+                        trigger="click"
+                        placement="bottom-start"
+                        interactive={true}
+                        offset={[242, 27]}
+                    >
+                        <Button
+                            className={cx("btn-notify", clicked && "clicked")}
+                            shape={"circle"}
+                            onClick={() => setClicked(!clicked)}
+                        >
+                            <NotificationIcon />
+                        </Button>
+                    </Tippy>
+                </div>
                 <Link
                     to="/profile"
                     onClick={handleClick}
