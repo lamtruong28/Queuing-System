@@ -136,7 +136,6 @@ export const initializeSTT = createAsyncThunk(
 export const increaseSTT = createAsyncThunk(
     "increaseSTT",
     async ({ id, value }: increaseSTTProps) => {
-        console.log({ value });
         const ref = doc(db, "stt", id);
         await updateDoc(ref, { value });
     }

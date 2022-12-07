@@ -1,3 +1,9 @@
+# Available account
+
+-   Tên đăng nhập: admin
+-   Mật khẩu: 123321
+-   email: admin@gmail.com
+
 # Available Scripts
 
 -   npm start

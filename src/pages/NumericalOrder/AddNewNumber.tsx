@@ -3,13 +3,17 @@ import moment from "moment";
 import Dropdown from "@/components/Dropdown";
 import classNames from "classnames/bind";
 import styles from "./NumericalOrder.module.scss";
-import { Modal } from "antd";
+import { Button, Modal } from "antd";
 import { useEffect, useState } from "react";
 import { CloseIcon } from "@/components/Icons";
 import { useAppDispatch } from "@/redux/store";
 import { fetchAllService } from "@/redux/slices/serviceSlice";
 import { useSelector } from "react-redux";
-import { serviceSelectors, userSelectors } from "@/redux/selectors";
+import {
+    numericalSelectors,
+    serviceSelectors,
+    userSelectors,
+} from "@/redux/selectors";
 import MessageNotify from "@/components/MessageNotify";
 import {
     addNumerical,
@@ -30,6 +34,7 @@ const _EXPIRED: number = 1;
 const resource = ["Kiosk", "Hệ thống"];
 
 function AddNewNumber() {
+    const { loading } = useSelector(numericalSelectors);
     const { services } = useSelector(serviceSelectors);
     const { currentUser } = useSelector(userSelectors);
     const navigate = useNavigate();
@@ -84,7 +89,6 @@ function AddNewNumber() {
             MessageNotify("error", "Bạn chưa chọn dịch vụ!", "topRight");
             return;
         }
-
         const res = await dispatch(
             addNumerical({
                 stt,
@@ -116,10 +120,13 @@ function AddNewNumber() {
                 })
             );
             setOpen(true);
-            setValueSelected(null);
         } else MessageNotify("error", "Đã có lỗi xảy ra!", "topRight");
     };
 
+    const handleCloseModal = () => {
+        setOpen(false);
+        setValueSelected(null);
+    };
     return (
         <div className={cx("wrapper")}>
             <h1 className={cx("heading")}>Quản lý cấp số</h1>
@@ -143,26 +150,27 @@ function AddNewNumber() {
                     >
                         Hủy bỏ
                     </button>
-                    <button
+                    <Button
+                        loading={loading}
                         className={cx("btn-print", "btn btn-primary")}
                         onClick={handlePrintNumber}
                     >
                         In số
-                    </button>
+                    </Button>
                 </div>
             </div>
             <Modal
                 centered
                 open={open}
                 closable={false}
-                onCancel={() => setOpen(false)}
+                onCancel={handleCloseModal}
                 footer={null}
                 className={cx("modal")}
             >
                 <div className={cx("wrap-modal")}>
                     <span
                         className={cx("closed-btn")}
-                        onClick={() => setOpen(false)}
+                        onClick={handleCloseModal}
                     >
                         <CloseIcon />
                     </span>
