@@ -12,6 +12,8 @@
 }
 
 .btn-path:last-child {
+    user-select: none;
+    pointer-events: none;
     color: var(--primary);
 }
 

@@ -5,7 +5,7 @@ import styles from "./Notification.module.scss";
 const cx = classNames.bind(styles);
 
 type CardNotifyProps = {
-    name: string;
+    name: string | undefined;
     time: string;
 };
 

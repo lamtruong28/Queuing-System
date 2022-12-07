@@ -9,19 +9,30 @@ import { useAppDispatch } from "@/redux/store";
 import pathSlice from "@/redux/slices/pathSlice";
 import Tippy from "@tippyjs/react/headless";
 import Notification from "../Notification";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { userSelectors } from "@/redux/selectors";
+import { useSelector } from "react-redux";
 
 const cx = classNames.bind(styles);
 
 function Topbar() {
+    const { currentUser } = useSelector(userSelectors);
     const [clicked, setClicked] = useState(false);
     const dispatch = useAppDispatch();
+
+    useEffect(() => {
+        document.addEventListener("click", () => {
+            setClicked(false);
+        });
+    }, []);
     const handleClick = () => {
         dispatch(
-            pathSlice.actions.setPath({
-                name: "Thông tin cá nhân",
-                link: "/profile",
-            })
+            pathSlice.actions.setPath([
+                {
+                    name: "Thông tin cá nhân",
+                    link: "/profile",
+                },
+            ])
         );
     };
     return (
@@ -34,7 +45,12 @@ function Topbar() {
                 <div>
                     <Tippy
                         render={(attrs) => (
-                            <div className="box" tabIndex={-1} {...attrs}>
+                            <div
+                                className="box"
+                                onClick={(e) => e.stopPropagation()}
+                                tabIndex={-1}
+                                {...attrs}
+                            >
                                 <Notification />
                             </div>
                         )}
@@ -47,7 +63,10 @@ function Topbar() {
                         <Button
                             className={cx("btn-notify", clicked && "clicked")}
                             shape={"circle"}
-                            onClick={() => setClicked(!clicked)}
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                setClicked(!clicked);
+                            }}
                         >
                             <NotificationIcon />
                         </Button>
@@ -58,10 +77,22 @@ function Topbar() {
                     onClick={handleClick}
                     className="d-flex-center"
                 >
-                    <Avatar className={cx("avatar")} src={images.avatar} />
+                    <Avatar
+                        className={cx("avatar")}
+                        src={currentUser?.photoURL}
+                        icon={
+                            <span>
+                                {currentUser?.displayName
+                                    ?.charAt(0)
+                                    ?.toUpperCase()}
+                            </span>
+                        }
+                    />
                     <div className={cx("info")}>
                         <span className={cx("greet")}>Xin chào</span>
-                        <p className={cx("user-name")}>Lê Quỳnh Ái Vân</p>
+                        <p className={cx("user-name")}>
+                            {currentUser?.displayName}
+                        </p>
                     </div>
                 </Link>
             </div>

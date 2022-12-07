@@ -1,4 +1,5 @@
 import "./GlobalStyles.scss";
+import "./OverrideStyleAntd.scss";
 
 type GlobalStylesProps = {
     children: JSX.Element;

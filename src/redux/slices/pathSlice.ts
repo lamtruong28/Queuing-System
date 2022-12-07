@@ -1,24 +1,25 @@
-import { IPath } from "@/interfaces";
 import { createSlice } from "@reduxjs/toolkit";
-
-type TypeAction = {
-    type: string;
-    payload: IPath;
-};
 
 const initialState = {
     path: [{ name: "Dashboard", link: "/dashboard" }],
+    selectedMenu: "Dashboard",
 };
 
 const pathSlice = createSlice({
     name: "path",
     initialState,
     reducers: {
-        appendPath: (state, action: TypeAction) => {
+        appendPath: (state, action) => {
             state.path.push(action.payload);
         },
-        setPath: (state, action: TypeAction) => {
-            state.path = [{ ...action.payload }];
+        setPath: (state, action) => {
+            state.path = action.payload;
+        },
+        back: (state) => {
+            state.path = state.path.slice(0, state.path.length - 1);
+        },
+        setSelectedMenu: (state, action) => {
+            state.selectedMenu = action.payload;
         },
     },
 });

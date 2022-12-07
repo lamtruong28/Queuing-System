@@ -12,9 +12,10 @@
 .menubar {
     flex: 1;
 }
-body .btn-logout {
+body .wrapper .btn-logout {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 12px;
     padding: 12px;
     height: 48px;
@@ -25,10 +26,4 @@ body .btn-logout {
     background: #fff2e7;
     border-radius: 8px;
     border: none;
-}
-
-body .btn-logout:hover {
-    opacity: 0.9;
-    background: var(--orange-400);
-    color: var(--white-color);
 }

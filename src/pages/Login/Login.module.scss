@@ -21,11 +21,12 @@
         }
     }
     .input {
-        border: 1.5px solid #d4d4d7;
+        height: 44px;
+        border-width: 1.5px;
         border-radius: 8px;
-        padding: 6.5px 12px;
+        padding: 8.5px 12px;
         font-size: 1.8rem;
-        font-weight: 400;
+        font-weight: 300;
     }
 }
 
@@ -40,12 +41,20 @@
     margin-bottom: 16px;
 }
 
+#password {
+    font-weight: 300;
+}
+
 .forgot-pass {
     display: inline-block;
     color: var(--red-color);
     font-weight: 400;
     font-size: 1.4rem;
     margin-top: 12px;
+
+    &:hover {
+        color: var(--primary);
+    }
 }
 
 .error-message {
@@ -60,12 +69,8 @@
 }
 
 body .btn-login {
-    background-color: var(--orange-400);
-    color: var(--white-color);
     margin-top: 19px;
-    font-weight: 700;
     width: 162px;
-    border-radius: 8px;
 }
 
 // CSS content right
@@ -73,12 +78,12 @@ body .btn-login {
 .content-right {
     position: relative;
     width: 848px;
-    left: 79px;
+    padding-left: 79px;
 }
 
 .title {
     position: absolute;
-    left: 375px;
+    left: 454px;
     top: 295px;
     .system {
         font-size: 3.4rem;

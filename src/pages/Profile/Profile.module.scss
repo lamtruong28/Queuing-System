@@ -12,8 +12,15 @@
 
 .user-avatar {
     .avatar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 18rem;
+        user-select: none;
+        font-weight: bold;
         width: 248px;
         height: 248px;
+        background-color: var(--primary);
     }
     .name {
         font-weight: 700;
@@ -44,7 +51,7 @@
     width: calc(50% - 12px);
     height: fit-content;
     input {
-        padding: 9px 16px;
+        padding: 10px 16px;
         font-weight: 400;
         font-size: 1.6rem;
         line-height: 2.4rem;

@@ -28,6 +28,7 @@
         color: #ffac6a;
         background-color: #fff2e7;
         border: none;
+        margin-right: 24px;
 
         &:focus {
             color: #ffac6a;
@@ -40,9 +41,14 @@
         }
     }
     .avatar {
-        margin: 0 8px 0 24px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+        margin-right: 8px;
         width: 40px;
         height: 40px;
+        background-color: var(--primary);
     }
 }
 

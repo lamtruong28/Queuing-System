@@ -1,34 +1,42 @@
-import { useEffect, useState } from "react";
 import { pathSelectors } from "@/redux/selectors";
 import { useSelector } from "react-redux";
 import classNames from "classnames/bind";
 import styles from "./Path.module.scss";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useAppDispatch } from "@/redux/store";
 import pathSlice from "@/redux/slices/pathSlice";
-import { IPath } from "@/interfaces";
-import myPath from "@/configs/myPath";
+import { useEffect, useState } from "react";
 
 const cx = classNames.bind(styles);
 
 function Path() {
     const { path } = useSelector(pathSelectors);
     const dispatch = useAppDispatch();
+    const { pathname } = useLocation();
+    const [title, setTitle] = useState(path[path.length - 1]?.name);
     useEffect(() => {
-        dispatch(
-            pathSlice.actions.setPath(
-                myPath.find(
-                    (path) => path.link === window.location.pathname && path
-                ) as IPath
-            )
-        );
-    }, []);
+        setTitle(path[path.length - 1]?.name);
+    }, [path]);
+    useEffect(() => {
+        document.title = title;
+    }, [pathname, title]);
     return (
         <div className={cx("wrapper")}>
-            {path.map((path, index) => {
+            {path.map((item, index) => {
                 return (
-                    <Link to={path.link} key={index} className={cx("btn-path")}>
-                        {path.name}
+                    <Link
+                        to={item.link}
+                        onClick={() =>
+                            dispatch(
+                                pathSlice.actions.setPath(
+                                    path.slice(0, index + 1)
+                                )
+                            )
+                        }
+                        key={index}
+                        className={cx("btn-path")}
+                    >
+                        {item?.name}
                     </Link>
                 );
             })}

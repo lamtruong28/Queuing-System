@@ -1,14 +1,7 @@
 import { Routes, Route } from "react-router-dom";
-import { Fragment, ReactNode } from "react";
-import config from "./configs";
-import Login from "./pages/Login";
+import { Fragment, Suspense } from "react";
 import { routes } from "./routes";
-import MainLayout from "./layouts/MainLayout";
-import { MainLayoutProps } from "./interfaces";
-
-type LayoutProps = {
-    Layout: JSX.Element | ReactNode;
-};
+import { Spin } from "antd";
 
 function App() {
     return (
@@ -23,7 +16,20 @@ function App() {
                             path={route.path}
                             element={
                                 <Layout>
-                                    <Page />
+                                    <Suspense
+                                        fallback={
+                                            <Spin
+                                                style={{
+                                                    height: "100%",
+                                                    display: "flex",
+                                                    justifyContent: "center",
+                                                    alignItems: "center",
+                                                }}
+                                            />
+                                        }
+                                    >
+                                        <Page />
+                                    </Suspense>
                                 </Layout>
                             }
                         />

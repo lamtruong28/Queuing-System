@@ -1,6 +1,5 @@
 import classNames from "classnames/bind";
-import { Link, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Button, Image, Menu } from "antd";
 import type { MenuProps } from "antd";
 import styles from "./MenuSidebar.module.scss";
@@ -19,6 +18,7 @@ import { useAppDispatch } from "@/redux/store";
 import pathSlice from "@/redux/slices/pathSlice";
 import { pathSelectors } from "@/redux/selectors";
 import { useEffect, useState } from "react";
+import config from "@/configs";
 
 const cx = classNames.bind(styles);
 
@@ -41,92 +41,160 @@ function getItem(
 }
 
 const items: MenuProps["items"] = [
-    getItem("Dashboard", "Dashboard", <Element4 />),
-    getItem("Thiết bị", "Thiết bị", <Monitor />),
-    getItem("Dịch vụ", "Dịch vụ", <ServiceIcon />),
-    getItem("Cấp số", "Cấp số", <DashboardIcon03 />),
-    getItem("Báo cáo", "Báo cáo", <ReportIcon />),
+    getItem("Dashboard", "/dashboard", <Element4 />),
+    getItem("Thiết bị", "/device", <Monitor />),
+    getItem("Dịch vụ", "/services", <ServiceIcon />),
+    getItem("Cấp số", "/numerical-order", <DashboardIcon03 />),
+    getItem("Báo cáo", "/report", <ReportIcon />),
     getItem("Cài đặt hệ thống", "Cài đặt hệ thống", <SettingIcon />, [
-        getItem("Quản lý vai trò", "Quản lý vai trò"),
-        getItem("Quản lý tài khoản", "Quản lý tài khoản"),
-        getItem("Nhật ký người dùng", "Nhật ký người dùng"),
+        getItem("Quản lý vai trò", "/settings/role-management"),
+        getItem("Quản lý tài khoản", "/settings/account-management"),
+        getItem("Nhật ký người dùng", "/settings/user-log"),
     ]),
 ];
-
 function MenuSidebar() {
-    const { path } = useSelector(pathSelectors);
+    const { pathname } = useLocation();
+    const [selected, setSelected] = useState(pathname);
     const dispatch = useAppDispatch();
-    const [selectedKey, setSelectedKey] = useState("Dashboard");
     const navigate = useNavigate();
-
     useEffect(() => {
-        setSelectedKey(path[path.length - 1].name);
-    }, [path]);
-    const handleSelectItem: MenuProps["onClick"] = (e) => {
-        if (
-            e.key === "Quản lý vai trò" ||
-            e.key === "Quản lý tài khoản" ||
-            e.key === "Nhật ký người dùng"
-        ) {
-            dispatch(
-                pathSlice.actions.setPath({
-                    name: "Cài đặt hệ thống",
-                    link: "",
-                })
-            );
-
-            dispatch(
-                pathSlice.actions.appendPath({
-                    name: e.key,
-                    link: convertPath(e.key),
-                })
-            );
-        } else
-            dispatch(
-                pathSlice.actions.setPath({
-                    name: e.key,
-                    link: convertPath(e.key),
-                })
-            );
-
-        navigate(convertPath(e.key));
-    };
-    const convertPath = (key: string) => {
-        let path = "";
-        switch (key) {
-            case "Dashboard":
-                path = "/dashboard";
+        switch (pathname) {
+            case "/dashboard":
+                setSelected(pathname);
+                dispatch(
+                    pathSlice.actions.setPath([
+                        {
+                            name: "Dashboard",
+                            link: config.routes.dashboard,
+                        },
+                    ])
+                );
                 break;
-            case "Thiết bị":
-                path = "/equipment";
+            case "/device":
+                setSelected(pathname);
+                dispatch(
+                    pathSlice.actions.setPath([
+                        {
+                            name: "Thiết bị",
+                            link: "",
+                        },
+                        {
+                            name: "Danh sách thiết bị",
+                            link: config.routes.device,
+                        },
+                    ])
+                );
                 break;
-            case "Dịch vụ":
-                path = "/services";
+            case "/services":
+                setSelected(pathname);
+                dispatch(
+                    pathSlice.actions.setPath([
+                        {
+                            name: "Dịch vụ",
+                            link: "",
+                        },
+                        {
+                            name: "Danh sách dịch vụ",
+                            link: config.routes.service,
+                        },
+                    ])
+                );
                 break;
-            case "Cấp số":
-                path = "/numerical-order";
+            case "/numerical-order":
+                setSelected(pathname);
+                dispatch(
+                    pathSlice.actions.setPath([
+                        {
+                            name: "Cấp số",
+                            link: "",
+                        },
+                        {
+                            name: "Danh sách cấp số",
+                            link: config.routes.numberOrder,
+                        },
+                    ])
+                );
                 break;
-            case "Báo cáo":
-                path = "/report";
+            case "/report":
+                setSelected(pathname);
+                dispatch(
+                    pathSlice.actions.setPath([
+                        {
+                            name: "Báo cáo",
+                            link: "",
+                        },
+                        {
+                            name: "Lập báo cáo",
+                            link: config.routes.report,
+                        },
+                    ])
+                );
                 break;
-            case "Quản lý vai trò":
-                path = "/settings/role-management";
+            case "/settings/role-management":
+                setSelected(pathname);
+                dispatch(
+                    pathSlice.actions.setPath([
+                        {
+                            name: "Cài đặt hệ thống",
+                            link: "",
+                        },
+                        {
+                            name: "Quản lý vai trò",
+                            link: config.routes.roleManagement,
+                        },
+                    ])
+                );
                 break;
-            case "Quản lý tài khoản":
-                path = "/settings/account-management";
+            case "/settings/account-management":
+                setSelected(pathname);
+                dispatch(
+                    pathSlice.actions.setPath([
+                        {
+                            name: "Cài đặt hệ thống",
+                            link: "",
+                        },
+                        {
+                            name: "Quản lý tài khoản",
+                            link: config.routes.accountManagement,
+                        },
+                    ])
+                );
                 break;
-            case "Nhật ký người dùng":
-                path = "/settings/logs-management";
+            case "/settings/user-log":
+                setSelected(pathname);
+                dispatch(
+                    pathSlice.actions.setPath([
+                        {
+                            name: "Cài đặt hệ thống",
+                            link: "",
+                        },
+                        {
+                            name: "Nhật ký hoạt động",
+                            link: config.routes.userLog,
+                        },
+                    ])
+                );
+                break;
+            case "/profile":
+                setSelected(pathname);
+                dispatch(
+                    pathSlice.actions.setPath([
+                        {
+                            name: "Thông tin cá nhân",
+                            link: "",
+                        },
+                    ])
+                );
                 break;
         }
-
-        return path;
+    }, [pathname]);
+    const handleSelectItem: MenuProps["onClick"] = (e) => {
+        navigate(e.key);
+        setSelected(e.key);
     };
-
     const handleLogout = () => {
         navigate("/login");
     };
-
     return (
         <div className={cx("wrapper")}>
             <Image srcSet={`${images.logoDashboard} 2x`} preview={false} />
@@ -136,11 +204,11 @@ function MenuSidebar() {
                 mode="vertical"
                 items={items}
                 expandIcon={<MoreIcon />}
-                selectedKeys={[selectedKey]}
+                selectedKeys={pathname === "/profile" ? [""] : [selected]}
             />
             <Button
                 onClick={handleLogout}
-                className={cx("btn-logout")}
+                className={cx("btn-logout", "btn btn-primary")}
                 icon={<LogoutIcon />}
             >
                 Đăng xuất
