@@ -18,7 +18,6 @@ const RoleManagement = React.lazy(() => import("@/pages/RoleManagement"));
 const AccountManagement = React.lazy(() => import("@/pages/AccountManagement"));
 const UserLog = React.lazy(() => import("@/pages/UserLog"));
 const NumericalOrder = React.lazy(() => import("@/pages/NumericalOrder"));
-const DeviceList = React.lazy(() => import("@/pages/Device/DeviceList"));
 const AddDevice = React.lazy(() => import("@/pages/Device/AddDevice"));
 const DetailDevice = React.lazy(() => import("@/pages/Device/DetailDevice"));
 const UpdateDevice = React.lazy(() => import("@/pages/Device/UpdateDevice"));
@@ -60,11 +59,6 @@ export const routes = [
     {
         path: config.routes.device,
         component: Equipment,
-        layout: MainLayout,
-    },
-    {
-        path: config.routes.deviceList,
-        component: DeviceList,
         layout: MainLayout,
     },
     {
